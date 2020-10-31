@@ -5,7 +5,29 @@ package com.city.highpeaksoftware.file1;
 		import java.util.*;
 
 		public class goodies {
-		    
+			 public static void distGoodies(ArrayList<Foodies> foodiesList, int n) throws IOException{
+			        int startIndex=0;
+			        int currentDiff= Integer.MAX_VALUE;
+			        ArrayList<Foodies> finalFoodiesList = new ArrayList<>();
+			        int index = 0;
+			        while(index+n<foodiesList.size()){
+			            int minPrice = foodiesList.get(index+n).price - foodiesList.get(index).price;
+			            if(currentDiff>minPrice) {
+			                currentDiff = minPrice;
+			                startIndex = index;
+			            }
+			            index++;
+			        }
+			        while(startIndex<startIndex+n&&startIndex+n<foodiesList.size()){
+			            finalFoodiesList.add(foodiesList.get(startIndex++));
+			        }
+			        System.out.println("finalFoodiesList :: "+finalFoodiesList);
+			        FileWriter writer = new FileWriter("C:/users/DELL/Desktop/output.txt");
+			        for(Foodies obj: finalFoodiesList) {
+			            writer.write(obj.name +": "+ obj.price + System.lineSeparator());
+			        }
+			        writer.close();
+			 }
 		    public static void main(String []args)throws Exception
 		    {
 		        File file = new File("C:/users/DELL/Desktop/inp.txt");
@@ -57,6 +79,31 @@ package com.city.highpeaksoftware.file1;
 		                 '}';
 
 
+		       
+		        	
 	}
+		     public static void distGoodies(ArrayList<Foodies> foodiesList, int n) throws IOException{
+		    	    int startIndex=0;
+		    	    int currentDiff= Integer.MAX_VALUE;
+		    	    ArrayList<Foodies> finalFoodiesList = new ArrayList<>();
+		    	    int index = 0;
+		    	    while(index+n<foodiesList.size()){
+		    	        int minPrice = foodiesList.get(index+n).price - foodiesList.get(index).price;
+		    	        if(currentDiff>minPrice) {
+		    	            currentDiff = minPrice;
+		    	            startIndex = index;
+		    	        }
+		    	        index++;
+		    	    }
+		    	    while(startIndex<startIndex+n&&startIndex+n<foodiesList.size()){
+		    	        finalFoodiesList.add(foodiesList.get(startIndex++));
+		    	    }
+		    	    System.out.println("finalFoodiesList :: "+finalFoodiesList);
+		    	    FileWriter writer = new FileWriter("C:/users/DELL/Desktop/output.txt");
+		    	    for(Foodies obj: finalFoodiesList) {
+		    	        writer.write(obj.name +": "+ obj.price + System.lineSeparator());
+		    	    }
+		    	    writer.close();
+		    	}
 
 }
